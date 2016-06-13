@@ -28,10 +28,10 @@ rules = Rule[]
 
 push!(rules, Rule(s -> true, 0.001))
 push!(rules, Rule(s -> s["Ad"] == 2, 0.01))
-push!(rules, Rule(s -> s["Age"] >= 1980 && s["Age"] < 1989 && s["Geo"] == "New York" && s["Ad"] == 0, 0.30))
-push!(rules, Rule(s -> s["Age"] >= 1950 && s["Age"] < 1959 && s["Geo"] == "New York" && s["Ad"] == 1, 0.30))
-push!(rules, Rule(s -> s["Age"] >= 1980 && s["Age"] < 1989 && s["Geo"] == "Arizona" && s["Ad"] == 1, 0.30))
-push!(rules, Rule(s -> s["Age"] >= 1950 && s["Age"] < 1959 && s["Geo"] == "Arizona" && s["Ad"] == 0, 0.30))
+push!(rules, Rule(s -> s["Age"] >= 1980 && s["Age"] <= 1989 && s["Geo"] == "New York" && s["Ad"] == 0, 0.30))
+push!(rules, Rule(s -> s["Age"] >= 1950 && s["Age"] <= 1959 && s["Geo"] == "New York" && s["Ad"] == 1, 0.30))
+push!(rules, Rule(s -> s["Age"] >= 1980 && s["Age"] <= 1989 && s["Geo"] == "Arizona" && s["Ad"] == 1, 0.30))
+push!(rules, Rule(s -> s["Age"] >= 1950 && s["Age"] <= 1959 && s["Geo"] == "Arizona" && s["Ad"] == 0, 0.30))
 ```
 
 Next, let us create a set of samples with random pairs of properties:

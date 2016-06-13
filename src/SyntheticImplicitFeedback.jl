@@ -11,17 +11,15 @@ type Rule
 end
 
 function generate(samples::Array{Dict,1}, rules::Array{Rule,1})
-    feedback = Bool[]
-    for sample in samples
+    map(samples) do sample
         ctr = 0.0
         for rule in rules
             if rule.f(sample)
                 ctr += rule.p
             end
         end
-        push!(feedback, rand() <= ctr)
+        rand() <= ctr
     end
-    feedback
 end
 
 end # module

@@ -1,6 +1,6 @@
 module SyntheticImplicitFeedback
 
-export Rule, generate
+export Rule, accumulate, generate
 
 type Rule
     # return bool
@@ -10,15 +10,19 @@ type Rule
     p::Float64
 end
 
+function accumulate(sample::Dict, rules::Array{Rule,1})
+    ctr = 0.0
+    for rule in rules
+        if rule.f(sample)
+            ctr += rule.p
+        end
+    end
+    ctr
+end
+
 function generate(samples::Array{Dict,1}, rules::Array{Rule,1})
     map(samples) do sample
-        ctr = 0.0
-        for rule in rules
-            if rule.f(sample)
-                ctr += rule.p
-            end
-        end
-        rand() <= ctr
+        rand() <= accumulate(sample, rules)
     end
 end
 

@@ -21,12 +21,15 @@ push!(rules, Rule(s -> s["Age"] >= 1950 && s["Age"] <= 1959 && s["Geo"] == "Ariz
 # check if a accumulative CTR is computed correctly
 sample1 = Dict("Age" => 1940, "Geo" => "California", "Ad" => 0)
 @test accumulate(sample1, rules) == 0.001
+@test isa(generate(sample1, rules), Bool)
 
 sample2 = Dict("Age" => 1940, "Geo" => "California", "Ad" => 2)
 @test accumulate(sample2, rules) == 0.011
+@test isa(generate(sample2, rules), Bool)
 
 sample3 = Dict("Age" => 1953, "Geo" => "New York", "Ad" => 1)
 @test accumulate(sample3, rules) == 0.301
+@test isa(generate(sample3, rules), Bool)
 
 # generate samples with random pairs of demographics and ad variants
 samples = Dict[]

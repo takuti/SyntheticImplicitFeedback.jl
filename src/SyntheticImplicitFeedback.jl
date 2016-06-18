@@ -26,9 +26,13 @@ function accumulate(sample::Dict, rules::Array{Rule,1})
     ctr
 end
 
+function generate(sample::Dict, rules::Array{Rule,1})
+    rand() <= accumulate(sample, rules)
+end
+
 function generate(samples::Array{Dict,1}, rules::Array{Rule,1})
     map(samples) do sample
-        rand() <= accumulate(sample, rules)
+        generate(sample, rules)
     end
 end
 

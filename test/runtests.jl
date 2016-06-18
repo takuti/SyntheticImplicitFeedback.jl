@@ -1,6 +1,13 @@
 using SyntheticImplicitFeedback
 using Base.Test
 
+# define a set of features
+features = Feature[]
+
+push!(features, Feature("Age", 1950, () -> rand(1930:2010)))
+push!(features, Feature("Geo", "Arizona", () -> rand(["Arizona", "California", "Colorado", "Illinois", "Indiana", "Michigan", "New York", "Utah"])))
+push!(features, Feature("Ad", 0, () -> rand(0:4)))
+
 # create a set of rules
 rules = Rule[]
 
@@ -24,15 +31,11 @@ sample3 = Dict("Age" => 1953, "Geo" => "New York", "Ad" => 1)
 # generate samples with random pairs of demographics and ad variants
 samples = Dict[]
 
-age_range = 1930:2010
-geos = ["Arizona", "California", "Colorado", "Illinois", "Indiana", "Michigan", "New York", "Utah"]
-n_ad = 5
-
 for i in 1:100
     sample = Dict()
-    sample["Age"] = rand(age_range)
-    sample["Geo"] = rand(geos)
-    sample["Ad"] = rand(0:(n_ad-1))
+    for f in features
+        sample[f.name] = f.random()
+    end
     push!(samples, sample)
 end
 

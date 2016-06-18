@@ -1,6 +1,12 @@
 module SyntheticImplicitFeedback
 
-export Rule, accumulate, generate
+export Feature, Rule, accumulate, generate
+
+type Feature
+    name::UTF8String
+    default::Any
+    random::Function
+end
 
 type Rule
     # return bool

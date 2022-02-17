@@ -1,3 +1,7 @@
+***This tool has been migrated to [Recommendation.jl](https://github.com/takuti/Recommendation.jl). Use the package instead.***
+
+---
+
 # SyntheticImplicitFeedback.jl
 
 [![Build Status](https://travis-ci.org/takuti/SyntheticImplicitFeedback.jl.svg?branch=master)](https://travis-ci.org/takuti/SyntheticImplicitFeedback.jl)
